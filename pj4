@@ -1,0 +1,44 @@
+#include <iostream>     
+using namespace std;
+ 
+const unsigned short size=5;
+ 
+int main()
+{
+   char list[5][5] = {"15", "31", "96", "74", "22"};
+   int* array = new int[size];
+   int n, m, len=size;
+  
+   for (int i = 0; i < size; i++)
+   {
+    n=0;
+    while (list[i][n]!='\0')
+    {
+        array[i]=10*array[i]+(list[i][n]-'0');
+        n+=1;
+    }
+   };
+   
+   while(len--)                           
+	{                                         
+	 bool swapped = false;                     
+	 for(int i = 0; i < len; i++)  
+	   {
+        if(array[i] > array[i + 1])
+		    {
+			 swap(array[i], array[i + 1]);
+			 swapped = true;
+			}
+	    }
+	 if(swapped == false)
+	 break;
+	 } 
+   
+   for (int i = 0; i < size; ++i)
+   {
+    cout<< *(array + i) << " ";
+   };
+   
+   delete[] array;
+   return 0;
+}
