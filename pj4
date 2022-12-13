@@ -3,6 +3,24 @@ using namespace std;
  
 const unsigned short size=5;  // Размер динамического массива
  
+void sort(int length,int sortarray[size])
+{
+    while(length--)                         // Проводим сортировку “пузырьком” по возрастанию
+   {                                         
+	 bool swapped = false;                     
+	 for(int i = 0; i < length; i++)  
+	   {
+          if(sortarray[i] > sortarray[i + 1])
+		    {
+			 swap(sortarray[i], sortarray[i + 1]);
+			 swapped = true;
+			}
+	    }
+	 if(swapped == false)
+	 break;
+	 } 
+}
+ 
 int main()
 {
    char list[5][5], str[size];      // Массив строк
@@ -29,20 +47,7 @@ int main()
     }
    };
    
-  while(len--)                         // Проводим сортировку “пузырьком” по возрастанию
-   {                                         
-	 bool swapped = false;                     
-	 for(int i = 0; i < len; i++)  
-	   {
-          if(array[i] > array[i + 1])
-		    {
-			 swap(array[i], array[i + 1]);
-			 swapped = true;
-			}
-	    }
-	 if(swapped == false)
-	 break;
-	 } 
+   sort(len,array);
    
    for (int i = 0; i < size; ++i)     // Выводим отсортированный массив
    {
