@@ -1,9 +1,9 @@
-#include <iostream>     
+#include <iostream>     // Подключение библиотек
 using namespace std;
  
-void sort(int length,int sortarray[])
+void sort(int length,long int sortarray[])
 {
-    while(length--)                         
+    while(length--)                         // Проводим сортировку “пузырьком” по возрастанию
    {                                         
 	 bool swapped = false;                     
 	 for(int i = 0; i < length; i++)  
@@ -27,12 +27,14 @@ int main()
    cin>>size;
    cout<<"Enter length of string: ";
    cin>>sizestr;
+   if (sizestr>18) { cout<<"<WARNING, somebody wants to break the code!>"; return 0;}
+   
    
    char* str = new char[sizestr];      
    char** arraychar = new char*[size];
    for ( int i = 0; i < size; i++) 
         arraychar[i] = new char[sizestr];
-   int* arrayint = new int[size];
+   long int* arrayint = new long int[size];
 
   for(int i = 0; i < size; i++)    
     {
@@ -44,8 +46,8 @@ int main()
         str[0]=0;
     }
   
-   for (int i = 0; i < size; i++)  
-   {				
+   for (int i = 0; i < size; i++)  // Проходимся по строке и переводим char в int для 
+   {				 // динамического массива
     n=0;
     while (arraychar[i][n]!='\0')
     {
@@ -56,13 +58,13 @@ int main()
    
    sort(size,arrayint);
    
-   for (int i = 0; i < size; ++i)     
+   for (int i = 0; i < size; ++i)     // Выводим отсортированный массив
    {
     cout<< *(arrayint + i) << " ";
    };
    
    delete[] str;
    delete[] arraychar;
-   delete[] arrayint;     
+   delete[] arrayint;     // Освобождаем выделенную под массив память
    return 0;
 }
