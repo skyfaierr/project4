@@ -1,11 +1,9 @@
-#include <iostream>     // Подключение библиотек
+#include <iostream>     
 using namespace std;
  
-const unsigned short size=5;  // Размер динамического массива
- 
-void sort(int length,int sortarray[size])
+void sort(int length,int sortarray[])
 {
-    while(length--)                         // Проводим сортировку “пузырьком” по возрастанию
+    while(length--)                         
    {                                         
 	 bool swapped = false;                     
 	 for(int i = 0; i < length; i++)  
@@ -23,37 +21,48 @@ void sort(int length,int sortarray[size])
  
 int main()
 {
-   char list[5][5], str[size];      // Массив строк
-   int* array = new int[size];  // Выделили в куче память для 6 переменных типа int
-   int n, m, len=size;
-  
+   int size, sizestr, n;
+   
+   cout<<"Enter size of array: ";
+   cin>>size;
+   cout<<"Enter length of string: ";
+   cin>>sizestr;
+   
+   char* str = new char[sizestr];      
+   char** arraychar = new char*[size];
+   for ( int i = 0; i < size; i++) 
+        arraychar[i] = new char[sizestr];
+   int* arrayint = new int[size];
+
   for(int i = 0; i < size; i++)    
     {
         cin>>str;    
-        for(int j = 0; j < 5; j++)   
+        for(int j = 0; j < sizestr; j++)   
         {
-           list[i][j]=str[j];
+           arraychar[i][j]=str[j];
         };
         str[0]=0;
     }
   
-   for (int i = 0; i < size; i++)  // Проходимся по строке и переводим char в int для 
-   {				 // динамического массива
+   for (int i = 0; i < size; i++)  
+   {				
     n=0;
-    while (list[i][n]!='\0')
+    while (arraychar[i][n]!='\0')
     {
-        array[i]=10*array[i]+(list[i][n]-'0');
+        arrayint[i]=10*arrayint[i]+(arraychar[i][n]-'0');
         n+=1;
     }
    };
    
-   sort(len,array);
+   sort(size,arrayint);
    
-   for (int i = 0; i < size; ++i)     // Выводим отсортированный массив
+   for (int i = 0; i < size; ++i)     
    {
-    cout<< *(array + i) << " ";
+    cout<< *(arrayint + i) << " ";
    };
    
-   delete[] array;     // Освобождаем выделенную под массив память
+   delete[] str;
+   delete[] arraychar;
+   delete[] arrayint;     
    return 0;
 }
